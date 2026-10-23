@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberShop Códigos | Portal Streaming</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/logo_cybershop.jpg">
+  
+  <!-- Tailwind CSS & Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            diamond: {
+              light: '#bbf2f6',
+              DEFAULT: '#00e5ff',
+              glow: '#38bdf8',
+              deep: '#0284c7'
+            },
+            cyberGreen: '#00ff88',
+            cyberDark: '#050814',
+            cyberCard: '#0a1024'
+          },
+          boxShadow: {
+            'diamond-glow': '0 0 25px rgba(0, 229, 255, 0.45)',
+            'diamond-soft': '0 0 15px rgba(56, 189, 248, 0.25)',
+            'neon-green': '0 0 20px rgba(0, 255, 136, 0.45)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background: #04060f;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(0, 229, 255, 0.14) 0%, transparent 55%),
+        radial-gradient(circle at 85% 90%, rgba(14, 165, 233, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(2, 132, 199, 0.08) 0%, transparent 45%);
+    }
+    .font-cyber {
+      font-family: 'Orbitron', sans-serif;
+    }
+    .code-font {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .cyber-card {
+      background: linear-gradient(135deg, rgba(10, 16, 36, 0.88) 0%, rgba(6, 10, 24, 0.95) 100%);
+      border: 1px solid rgba(0, 229, 255, 0.22);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      position: relative;
+    }
+    .cyber-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 12px;
+      height: 12px;
+      border-top: 2px solid #00e5ff;
+      border-left: 2px solid #00e5ff;
+    }
+    .cyber-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 12px;
+      height: 12px;
+      border-bottom: 2px solid #38bdf8;
+      border-right: 2px solid #38bdf8;
+    }
+    @keyframes pulse-green {
+      0%, 100% {
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.35), inset 0 0 15px rgba(0, 255, 136, 0.1);
+        border-color: rgba(0, 255, 136, 0.6);
+      }
+      50% {
+        box-shadow: 0 0 25px rgba(0, 255, 136, 0.6), inset 0 0 20px rgba(0, 255, 136, 0.2);
+        border-color: rgba(0, 255, 136, 1);
+      }
+    }
+    .animate-neon-pulse {
+      animation: pulse-green 2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-100 flex flex-col justify-between selection:bg-diamond selection:text-black">
+
+  <!-- ======================================================== -->
+  <!-- HEADER / NAVBAR CON LOGO OFICIAL Y AZUL DIAMANTE        -->
+  <!-- ======================================================== -->
+  <header class="relative z-20 w-full border-b border-diamond/20 bg-[#04060f]/90 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      
+      <!-- LOGO CYBERSHOP -->
+      <div class="flex items-center gap-3">
+        <div class="relative group">
+          <div class="absolute -inset-1 bg-gradient-to-r from-diamond via-sky-400 to-diamond-deep rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+          <img 
+            src="assets/logo_cybershop.jpg" 
+            alt="CyberShop Logo" 
+            class="relative w-11 h-11 rounded-full object-cover border-2 border-diamond shadow-diamond-glow"
+          >
+        </div>
+        <div>
+          <span class="font-cyber font-black text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-diamond-light to-diamond flex items-center gap-2">
+            CYBERSHOP
+            <span class="text-[10px] font-sans px-2 py-0.5 rounded bg-diamond/15 text-diamond border border-diamond/40 font-bold tracking-widest shadow-diamond-soft">
+              CÓDIGOS
+            </span>
+          </span>
+          <p class="text-[11px] text-slate-400 font-semibold tracking-wider">PORTAL DE ACCESO STREAMING</p>
+        </div>
+      </div>
+
+      <!-- ESTADO DE SESIÓN (SOLO MUESTRA EL NÚMERO DE CELULAR) -->
+      <div id="header-user-actions" class="hidden items-center gap-3">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyberCard border border-diamond/30 shadow-diamond-soft">
+          <span class="w-2 h-2 rounded-full bg-cyberGreen animate-pulse"></span>
+          <span class="text-xs text-slate-400 font-bold">LÍNEA:</span>
+          <span id="nav-user-phone" class="text-xs font-mono font-bold text-diamond-light"></span>
+        </div>
+        <button 
+          id="btn-logout" 
+          class="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/25 text-red-400 border border-red-500/30 transition-all active:scale-95"
+        >
+          <i data-lucide="power" class="w-3.5 h-3.5"></i>
+          <span>Salir</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- CONTENEDOR PRINCIPAL                                     -->
+  <!-- ======================================================== -->
+  <main class="relative z-10 flex-grow max-w-6xl w-full mx-auto px-4 py-6 flex flex-col justify-center">
+
+    <!-- AVISO DE CONFIGURACIÓN -->
+    <div id="config-warning" class="hidden mb-6 p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold">
+      Falta configurar la URL de Apps Script en <code>config.js</code>.
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- 1. VISTA DE INGRESO (LOGIN CON CELULAR + PIN)            -->
+    <!-- ======================================================== -->
+    <section id="login-section" class="w-full max-w-md mx-auto my-auto">
+      <div class="cyber-card rounded-2xl p-6 sm:p-8 shadow-2xl relative">
+        
+        <!-- Icono Azul Diamante -->
+        <div class="text-center mb-6">
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-diamond/20 via-sky-500/20 to-blue-600/20 border border-diamond/50 text-diamond mb-3 shadow-diamond-glow">
+            <i data-lucide="shield-check" class="w-8 h-8 text-diamond"></i>
+          </div>
+          <h1 class="font-cyber text-2xl font-black text-white tracking-wider">
+            ACCESO A CÓDIGOS
+          </h1>
+          <p class="text-xs text-slate-400 font-semibold tracking-wide mt-1">
+            Digita tu número celular y tu PIN de cliente
+          </p>
+        </div>
+
+        <form id="form-login" class="space-y-4">
+          <!-- Celular -->
+          <div>
+            <label for="input-celular" class="block text-xs font-bold text-diamond-light uppercase tracking-widest mb-1.5">
+              Número Celular
+            </label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                <i data-lucide="phone" class="w-4 h-4 text-diamond"></i>
+              </div>
+              <input 
+                type="tel" 
+                id="input-celular" 
+                required 
+                placeholder="Ej: 573508975554 o 3508975554"
+                class="w-full pl-10 pr-4 py-3 bg-black/60 border border-diamond/30 rounded-xl text-white placeholder-slate-600 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-diamond/60 focus:border-diamond transition-all"
+              >
+            </div>
+          </div>
+
+          <!-- PIN -->
+          <div>
+            <label for="input-pin" class="block text-xs font-bold text-diamond uppercase tracking-widest mb-1.5 flex justify-between">
+              <span>PIN de Cliente</span>
+              <span class="text-slate-500 text-[11px] font-normal">4 dígitos</span>
+            </label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                <i data-lucide="lock" class="w-4 h-4 text-diamond"></i>
+              </div>
+              <input 
+                type="password" 
+                id="input-pin" 
+                maxlength="6"
+                required 
+                placeholder="••••"
+                class="w-full pl-10 pr-11 py-3 bg-black/60 border border-diamond/30 rounded-xl text-white placeholder-slate-600 text-sm tracking-widest font-mono font-bold focus:outline-none focus:ring-2 focus:ring-diamond/60 focus:border-diamond transition-all"
+              >
+              <button 
+                type="button" 
+                id="btn-toggle-pin" 
+                class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-diamond transition-colors"
+              >
+                <i data-lucide="eye" id="icon-eye" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Recordar -->
+          <div class="flex items-center justify-between text-xs pt-1">
+            <label class="flex items-center gap-2 text-slate-400 cursor-pointer select-none font-semibold">
+              <input type="checkbox" id="check-remember" checked class="w-4 h-4 rounded bg-black border-slate-700 text-diamond focus:ring-0">
+              <span>Recordar en este dispositivo</span>
+            </label>
+          </div>
+
+          <!-- Error -->
+          <div id="login-error" class="hidden p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-semibold flex items-center gap-2">
+            <i data-lucide="alert-circle" class="w-4 h-4 flex-shrink-0"></i>
+            <span id="login-error-text">Datos incorrectos.</span>
+          </div>
+
+          <!-- Botón de Entrar (Azul Diamante) -->
+          <button 
+            type="submit" 
+            id="btn-submit"
+            class="w-full py-3.5 px-4 bg-gradient-to-r from-diamond via-sky-400 to-diamond-deep hover:from-sky-400 hover:to-diamond text-black font-cyber font-black tracking-wider rounded-xl text-sm shadow-diamond-glow transition-all duration-200 flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
+          >
+            <span id="btn-text">VER MIS CÓDIGOS</span>
+            <div id="btn-spinner" class="hidden w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin"></div>
+          </button>
+        </form>
+
+        <!-- Marcas Disponibles -->
+        <div class="mt-6 pt-5 border-t border-slate-800 text-center">
+          <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-3">Plataformas con Entrega de Código</p>
+          <div class="flex items-center justify-center gap-4">
+            <img src="assets/icon_netflix.png" alt="Netflix" class="w-7 h-7 rounded-md object-contain opacity-80 hover:opacity-100 transition-opacity">
+            <img src="assets/icon_disney.png" alt="Disney+" class="w-7 h-7 rounded-md object-contain opacity-80 hover:opacity-100 transition-opacity">
+            <img src="assets/icon_max.png" alt="Max" class="w-7 h-7 rounded-md object-contain opacity-80 hover:opacity-100 transition-opacity">
+            <img src="assets/icon_amazon.png" alt="Prime Video" class="w-7 h-7 rounded-md object-contain opacity-80 hover:opacity-100 transition-opacity">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 2. VISTA DE DASHBOARD DE TARJETAS                        -->
+    <!-- ======================================================== -->
+    <section id="dashboard-section" class="hidden w-full">
+      
+      <!-- Barra Superior de Control -->
+      <div class="cyber-card rounded-2xl p-4 mb-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-cyberGreen shadow-neon-green animate-pulse"></span>
+            <h2 class="font-cyber font-extrabold text-lg text-white tracking-wide">
+              MIS PANTALLAS ACTIVAS
+            </h2>
+          </div>
+          <p class="text-xs text-slate-400 font-semibold mt-0.5">
+            Selecciona tu app para ver el código más reciente
+          </p>
+        </div>
+
+        <!-- Botón de Refresco (Azul Diamante) -->
+        <button 
+          id="btn-refresh" 
+          class="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-diamond/15 hover:bg-diamond/25 text-diamond border border-diamond/40 text-xs font-cyber font-bold tracking-wider shadow-diamond-soft transition-all active:scale-95"
+        >
+          <i data-lucide="rotate-cw" id="icon-refresh" class="w-4 h-4"></i>
+          <span>ACTUALIZAR CÓDIGOS</span>
+        </button>
+      </div>
+
+      <!-- GRID DE TARJETAS COMPACTAS (Netflix, Disney, Max, Amazon) -->
+      <div id="services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <!-- Generadas dinámicamente con JS -->
+      </div>
+
+      <!-- Estado vacío -->
+      <div id="empty-state" class="hidden text-center py-12 cyber-card rounded-2xl">
+        <i data-lucide="tv" class="w-10 h-10 text-slate-600 mx-auto mb-2"></i>
+        <h3 class="font-cyber font-bold text-white text-base">Sin pantallas de streaming activas</h3>
+        <p class="text-xs text-slate-400 mt-1">No tienes cuentas activas de Netflix, Disney+, Max o Prime Video.</p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- TOAST NOTIFICATION (CÓDIGO COPIADO)                      -->
+  <!-- ======================================================== -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-cyberGreen text-black font-cyber font-bold text-xs shadow-neon-green">
+      <i data-lucide="check-circle" class="w-4 h-4"></i>
+      <span id="toast-message">¡CÓDIGO COPIADO!</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 w-full border-t border-slate-900 bg-[#03050c] py-4 text-center text-xs text-slate-500 font-semibold tracking-wider">
+    <p>© 2026 CYBERSHOP • PORTAL DE CÓDIGOS STREAMING • <span class="text-diamond">codigos.cybershop.lat</span></p>
+  </footer>
+
+  <!-- SCRIPT DE CONFIGURACIÓN Y LÓGICA -->
+  <script src="config.js"></script>
+  <script>
+    lucide.createIcons();
+
+    let currentAuth = {
+      celular: '',
+      pin: '',
+      data: null
+    };
+
+    const loginSection = document.getElementById('login-section');
+    const dashboardSection = document.getElementById('dashboard-section');
+    const formLogin = document.getElementById('form-login');
+    const inputCelular = document.getElementById('input-celular');
+    const inputPin = document.getElementById('input-pin');
+    const btnTogglePin = document.getElementById('btn-toggle-pin');
+    const checkRemember = document.getElementById('check-remember');
+    const btnSubmit = document.getElementById('btn-submit');
+    const btnText = document.getElementById('btn-text');
+    const btnSpinner = document.getElementById('btn-spinner');
+    const loginError = document.getElementById('login-error');
+    const loginErrorText = document.getElementById('login-error-text');
+    const headerUserActions = document.getElementById('header-user-actions');
+    const navUserPhone = document.getElementById('nav-user-phone');
+    const btnLogout = document.getElementById('btn-logout');
+    const btnRefresh = document.getElementById('btn-refresh');
+    const iconRefresh = document.getElementById('icon-refresh');
+    const servicesGrid = document.getElementById('services-grid');
+    const configWarning = document.getElementById('config-warning');
+
+    if (!window.APP_CONFIG || !window.APP_CONFIG.API_URL || window.APP_CONFIG.API_URL.includes('PEGA_AQUI')) {
+      configWarning.classList.remove('hidden');
+    }
+
+    // Toggle Mostrar/Ocultar PIN
+    btnTogglePin.addEventListener('click', () => {
+      if (inputPin.type === 'password') {
+        inputPin.type = 'text';
+        btnTogglePin.innerHTML = '<i data-lucide="eye-off" class="w-4 h-4 text-diamond"></i>';
+      } else {
+        inputPin.type = 'password';
+        btnTogglePin.innerHTML = '<i data-lucide="eye" class="w-4 h-4"></i>';
+      }
+      lucide.createIcons();
+    });
+
+    // Auto-login con credenciales guardadas
+    const savedPhone = localStorage.getItem('cs_celular');
+    const savedPin = localStorage.getItem('cs_pin');
+    if (savedPhone && savedPin) {
+      inputCelular.value = savedPhone;
+      inputPin.value = savedPin;
+      realizarConsulta(savedPhone, savedPin, true);
+    }
+
+    // Submit de Login
+    formLogin.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const celular = inputCelular.value.trim().replace(/[^0-9]/g, '');
+      const pin = inputPin.value.trim();
+
+      if (!celular || !pin) {
+        showError('Ingresa tu celular y tu PIN.');
+        return;
+      }
+
+      realizarConsulta(celular, pin);
+    });
+
+    // Logout
+    btnLogout.addEventListener('click', () => {
+      localStorage.removeItem('cs_celular');
+      localStorage.removeItem('cs_pin');
+      dashboardSection.classList.add('hidden');
+      headerUserActions.classList.add('hidden');
+      loginSection.classList.remove('hidden');
+      inputPin.value = '';
+    });
+
+    // Botón Actualizar
+    btnRefresh.addEventListener('click', () => {
+      if (!currentAuth.celular || !currentAuth.pin) return;
+      iconRefresh.classList.add('animate-spin');
+      btnRefresh.disabled = true;
+
+      realizarConsulta(currentAuth.celular, currentAuth.pin, false, () => {
+        iconRefresh.classList.remove('animate-spin');
+        btnRefresh.disabled = false;
+        showToast('¡CÓDIGOS ACTUALIZADOS!');
+      });
+    });
+
+    // Consulta API
+    async function realizarConsulta(celular, pin, isAutoLogin = false, callback = null) {
+      setLoading(true);
+      hideError();
+
+      const apiUrl = window.APP_CONFIG.API_URL;
+      if (!apiUrl || apiUrl.includes('PEGA_AQUI')) {
+        setLoading(false);
+        showError('Falta configurar la URL de Apps Script en config.js');
+        if (callback) callback();
+        return;
+      }
+
+      try {
+        const endpoint = `${apiUrl}?action=login&celular=${encodeURIComponent(celular)}&pin=${encodeURIComponent(pin)}&t=${Date.now()}`;
+        const response = await fetch(endpoint, { method: 'GET', mode: 'cors' });
+        const data = await response.json();
+
+        if (data.success) {
+          currentAuth = { celular, pin, data };
+
+          if (checkRemember.checked) {
+            localStorage.setItem('cs_celular', celular);
+            localStorage.setItem('cs_pin', pin);
+          }
+
+          mostrarDashboard(data, celular);
+        } else {
+          showError(data.message || 'No se pudo verificar tu acceso.');
+          if (isAutoLogin) {
+            localStorage.removeItem('cs_celular');
+            localStorage.removeItem('cs_pin');
+          }
+        }
+      } catch (err) {
+        console.error('Error:', err);
+        showError('Error de conexión con el servidor.');
+      } finally {
+        setLoading(false);
+        if (callback) callback();
+      }
+    }
+
+    // Renderizar Dashboard
+    function mostrarDashboard(data, celular) {
+      loginSection.classList.add('hidden');
+      dashboardSection.classList.remove('hidden');
+      headerUserActions.classList.remove('hidden');
+      headerUserActions.classList.add('flex');
+
+      navUserPhone.textContent = formatPhoneDisplay(celular);
+
+      const servicios = data.servicios || [];
+      servicesGrid.innerHTML = '';
+
+      if (servicios.length === 0) {
+        document.getElementById('empty-state').classList.remove('hidden');
+        return;
+      }
+
+      document.getElementById('empty-state').classList.add('hidden');
+
+      servicios.forEach(s => {
+        servicesGrid.appendChild(crearTarjetaCompacta(s));
+      });
+
+      lucide.createIcons();
+    }
+
+    // Crear tarjeta compacta con estilo AZUL DIAMANTE y el CORREO ARRIBA
+    function crearTarjetaCompacta(s) {
+      const card = document.createElement('div');
+      card.className = 'cyber-card rounded-xl p-4 flex flex-col justify-between transition-all duration-300 hover:border-diamond hover:shadow-diamond-glow';
+
+      const logoImg = getAppIcon(s.slug);
+      const otp = s.codigo;
+      const isExpired = !s.activo;
+      const hasRecentOtp = otp && otp.codigo && otp.minutos_atras <= 15;
+
+      // 1. CORREO RESALTADO EN LA PARTE SUPERIOR (En Azul Diamante)
+      const topEmailHtml = `
+        <div class="mb-3 pb-2.5 border-b border-diamond/20">
+          <div class="text-[9px] uppercase tracking-widest font-mono text-diamond-light/70 font-bold mb-1">
+            CUENTA / CORREO
+          </div>
+          <div class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-black/80 border border-diamond/30 text-white shadow-inner" title="${s.email}">
+            <i data-lucide="mail" class="w-3.5 h-3.5 text-diamond flex-shrink-0"></i>
+            <span class="text-xs font-mono font-bold truncate tracking-tight text-diamond">${s.email}</span>
+          </div>
+        </div>
+      `;
+
+      // 2. ENCABEZADO CON LOGO OFICIAL, NOMBRE DE APP Y PANTALLA
+      const appHeaderHtml = `
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2.5">
+            <img src="${logoImg}" alt="${s.app}" class="w-10 h-10 rounded-lg object-contain shadow-md border border-white/10">
+            <div>
+              <h3 class="font-cyber font-bold text-sm text-white tracking-wide leading-tight">${s.app}</h3>
+              <div class="flex items-center gap-1 text-[11px] text-slate-300 font-semibold mt-0.5">
+                <span class="text-diamond-light">Perfil:</span>
+                <span class="font-bold text-white">${s.pantalla || 'Principal'}</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-diamond/15 text-diamond border border-diamond/30 font-bold block shadow-diamond-soft">
+              PIN: ${s.pin_cliente || '----'}
+            </span>
+          </div>
+        </div>
+      `;
+
+      // 3. CUERPO: CÓDIGO O ESPERA
+      let bodyHtml = '';
+
+      if (isExpired) {
+        bodyHtml = `
+          <div class="my-2 p-3 rounded-lg bg-red-950/30 border border-red-500/30 text-center">
+            <p class="text-xs font-bold text-red-400">Suscripción Vencida</p>
+            <p class="text-[10px] text-red-300/80">Comunícate para renovar</p>
+          </div>
+        `;
+      } else if (otp && otp.codigo) {
+        bodyHtml = `
+          <div class="my-2 p-3 rounded-xl bg-black/70 border ${hasRecentOtp ? 'animate-neon-pulse' : 'border-diamond/30'} text-center">
+            <div class="flex items-center justify-between text-[10px] mb-1.5 px-0.5 font-bold">
+              <span class="text-slate-400 flex items-center gap-1">
+                <i data-lucide="key" class="w-3 h-3 text-cyberGreen"></i>
+                ${otp.tipo || 'Código'}
+              </span>
+              <span class="${hasRecentOtp ? 'text-cyberGreen font-extrabold' : 'text-slate-400'}">
+                ${otp.minutos_atras <= 1 ? 'Hace un momento' : `Hace ${otp.minutos_atras} min`}
+              </span>
+            </div>
+
+            <!-- Código Grande Monospace Verde Neón -->
+            <div class="py-2 px-1 rounded-lg bg-black/90 border border-cyberGreen/40 my-1.5 shadow-inner">
+              <span class="code-font text-2xl font-black tracking-widest text-cyberGreen select-all">
+                ${otp.codigo}
+              </span>
+            </div>
+
+            <!-- Botón Copiar -->
+            <button 
+              onclick="copiarCodigo('${otp.codigo}')"
+              class="w-full mt-2 py-1.5 px-3 rounded-lg bg-gradient-to-r from-cyberGreen/20 to-emerald-500/20 hover:from-cyberGreen/30 hover:to-emerald-500/30 text-cyberGreen border border-cyberGreen/50 text-xs font-cyber font-bold tracking-wider transition-all flex items-center justify-center gap-1.5 active:scale-95"
+            >
+              <i data-lucide="copy" class="w-3 h-3"></i>
+              <span>COPIAR</span>
+            </button>
+          </div>
+        `;
+      } else {
+        bodyHtml = `
+          <div class="my-2 py-4 px-2 rounded-xl bg-black/40 border border-dashed border-slate-800 text-center">
+            <i data-lucide="clock" class="w-5 h-5 text-slate-600 mx-auto mb-1"></i>
+            <p class="text-xs font-bold text-slate-400">Esperando código...</p>
+            <p class="text-[10px] text-slate-500 mt-0.5">Pídelo en tu TV y dale "Actualizar"</p>
+          </div>
+        `;
+      }
+
+      // 4. PIE DE TARJETA CON FECHA DE VENCIMIENTO
+      const footerHtml = `
+        <div class="pt-2 mt-auto border-t border-slate-800/60 flex items-center justify-between text-[10px] text-slate-500 font-semibold font-mono">
+          <span>ESTADO: ${s.activo ? '<span class="text-cyberGreen">ACTIVO</span>' : '<span class="text-red-400">VENCIDO</span>'}</span>
+          ${s.fecha_vence ? `<span>Vence: ${s.fecha_vence}</span>` : ''}
+        </div>
+      `;
+
+      card.innerHTML = topEmailHtml + appHeaderHtml + bodyHtml + footerHtml;
+      return card;
+    }
+
+    function getAppIcon(slug) {
+      switch (slug) {
+        case 'netflix': return 'assets/icon_netflix.png';
+        case 'disney': return 'assets/icon_disney.png';
+        case 'hbo':
+        case 'max': return 'assets/icon_max.png';
+        case 'amazon':
+        case 'prime': return 'assets/icon_amazon.png';
+        default: return 'assets/icon_netflix.png';
+      }
+    }
+
+    window.copiarCodigo = function(texto) {
+      navigator.clipboard.writeText(texto).then(() => {
+        showToast(`¡CÓDIGO ${texto} COPIADO!`);
+      }).catch(() => {
+        showToast(`CÓDIGO: ${texto}`);
+      });
+    };
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2500);
+    }
+
+    function setLoading(isLoading) {
+      btnSubmit.disabled = isLoading;
+      if (isLoading) {
+        btnText.classList.add('hidden');
+        btnSpinner.classList.remove('hidden');
+      } else {
+        btnText.classList.remove('hidden');
+        btnSpinner.classList.add('hidden');
+      }
+    }
+
+    function showError(msg) {
+      loginErrorText.textContent = msg;
+      loginError.classList.remove('hidden');
+    }
+
+    function hideError() {
+      loginError.classList.add('hidden');
+    }
+
+    function formatPhoneDisplay(phone) {
+      if (!phone) return '';
+      const str = String(phone).replace(/[^0-9]/g, '');
+      if (str.length === 12 && str.startsWith('57')) {
+        return `+57 ${str.substring(2, 5)} ${str.substring(5, 8)} ${str.substring(8)}`;
+      }
+      if (str.length === 10) {
+        return `${str.substring(0, 3)} ${str.substring(3, 6)} ${str.substring(6)}`;
+      }
+      return phone;
+    }
+  </script>
+</body>
+</html>
